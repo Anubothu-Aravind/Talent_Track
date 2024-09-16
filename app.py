@@ -7,9 +7,9 @@ import pdf2image
 import google.generativeai as genai
 from dotenv import load_dotenv
 
-load_dotenv()
+# load_dotenv()
 
-genai.configure(api_key=os.getenv("GOOGLE_API_KEY"))
+genai.configure(api_key="AIzaSyDElTmuLbMW3E65nGN-80DXlHl8nuB9Nk4")
 
 
 def get_gemini_response(input, pdf_cotent, prompt):
@@ -38,7 +38,7 @@ def input_pdf_setup(uploaded_file):
     else:
         raise FileNotFoundError("No file uploaded")
 
-st.set_page_config(page_title="ATS Resume EXpert")
+st.set_page_config(page_title="ATS Resume Expert")
 st.header("ATS Tracking System")
 input_text = st.text_area("Job Description: ", key="input")
 uploaded_file = st.file_uploader("Upload your resume(PDF)...", type=["pdf"])
@@ -72,27 +72,41 @@ your task is to evaluate the resume against the provided job description. give m
 the job description. First the output should come as percentage and then keywords missing and last final thoughts.
 """
 
-if submit1:
-    if uploaded_file is not None:
-        pdf_content = input_pdf_setup(uploaded_file)
-        response = get_gemini_response(input_prompt1, pdf_content, input_text)
-        st.subheader("The Repsonse is")
-        st.write(response)
-    else:
-        st.write("Please uplaod the resume")
+# if submit1:
+#     if uploaded_file is not None:
+#         pdf_content = input_pdf_setup(uploaded_file)
+#         response = get_gemini_response(input_prompt1, pdf_content, input_text)
+#         st.subheader("The Repsonse is")
+#         st.write(response)
+#     else:
+#         st.write("Please uplaod the resume")
+#
+# elif submit2:
+#     if uploaded_file is not None:
+#         pdf_content = input_pdf_setup(uploaded_file)
+#         response = get_gemini_response(input_prompt2,pdf_content,input_text)
+#         st.subheader("The Response is")
+#         st.write(response)
+#
+# elif submit3:
+#     if uploaded_file is not None:
+#         pdf_content = input_pdf_setup(uploaded_file)
+#         response = get_gemini_response(input_prompt3, pdf_content, input_text)
+#         st.subheader("The Repsonse is")
+#         st.write(response)
+#     else:
+#         st.write("Please uplaod the resume")
 
-elif submit2:
+if submit1 or submit2 or submit3:
     if uploaded_file is not None:
         pdf_content = input_pdf_setup(uploaded_file)
-        response = get_gemini_response(input_prompt2,pdf_content,input_text)
-        st.subheader("The Response is")
-        st.write(response)
-
-elif submit3:
-    if uploaded_file is not None:
-        pdf_content = input_pdf_setup(uploaded_file)
-        response = get_gemini_response(input_prompt3, pdf_content, input_text)
-        st.subheader("The Repsonse is")
+        if submit1:
+            response = get_gemini_response(input_prompt1,pdf_content,input_text)
+        elif submit2:
+            response = get_gemini_response(input_prompt2,pdf_content,input_text)
+        elif submit3:
+            response = get_gemini_response(input_prompt3,pdf_content,input_text)
+        st.write("The response is")
         st.write(response)
     else:
         st.write("Please uplaod the resume")
