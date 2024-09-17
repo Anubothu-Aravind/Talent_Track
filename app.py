@@ -15,7 +15,7 @@ genai.configure(api_key="AIzaSyDElTmuLbMW3E65nGN-80DXlHl8nuB9Nk4")
 
 
 def get_gemini_response(input_prompt):
-    model = genai.GenerativeModel('gemini-pro')
+    model = genai.GenerativeModel('gemini-1.5-pro')
     response = model.generate_content(input_prompt)
     return response.text
 
