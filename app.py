@@ -2,7 +2,6 @@ import streamlit as st
 import os
 import io
 import base64
-from PIL import Image
 import PyPDF2 as pdf
 import google.generativeai as genai
 from dotenv import load_dotenv
