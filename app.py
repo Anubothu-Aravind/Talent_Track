@@ -84,6 +84,8 @@ elif submit2:
         response = get_gemini_response(formatted_prompt)
         st.subheader("The Response is")
         st.write(response)
+    else:
+        st.write("Please uplaod the resume")
 
 elif submit3:
     if uploaded_file is not None:
