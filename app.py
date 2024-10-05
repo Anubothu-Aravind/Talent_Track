@@ -11,7 +11,6 @@ load_dotenv()
 
 # Configure Gemini API
 GEMINI_API_KEY = os.getenv("GEMINI_API_KEY")
-# genai.configure(api_key="AIzaSyDElTmuLbMW3E65nGN-80DXlHl8nuB9Nk4")
 
 def get_gemini_response(input_prompt):
     model = genai.GenerativeModel('gemini-1.5-pro')
